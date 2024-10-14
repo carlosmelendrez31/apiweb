@@ -12,16 +12,16 @@ namespace capacitacion4b_api.Data.interfaces
 
         /* buscar un solo usuario*/
         public Task<userModel> findOne(int idUsuario);
-
+        
         /* crear un usuario */
         public Task<userModel> create(createUserDto createUserDto);
 
         /* actualizar un usuario */
-        public Task<userModel> update(createUserDto createUserDto);
+        public Task<userModel> update(int idUsuario, updateUserDto updateUserDto);
 
         /* eliminar un usuario */
-        public Task<userModel> remove(createUserDto createUserDto);
-
+        public Task<userModel> remove(int idUsuario);
+       
     }
 
 }

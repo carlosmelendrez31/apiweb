@@ -3,7 +3,7 @@
 
     public class updateUserDto
     {
-
+        public int idUsuario { get; set; }
         /* nombresUsuario */
         public string? nombres { get; set; }
         /* usuarioUsuario */

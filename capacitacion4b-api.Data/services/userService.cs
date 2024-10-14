@@ -105,16 +105,69 @@ namespace capacitacion4b_api.Data.services
             }
         }
 
-        public async Task<userModel> update(createUserDto createUserDto)
+        public async Task<userModel> update(int idUsuario, updateUserDto updateUserDto)
         {
 
-            throw new NotImplementedException();
+            string sqlQuery = $"select * from fun_user_updat (" +
+                "p_idUsuario := @idUsuario," +
+                "p_nombresUsuario := @nombres," +
+                "p_usuarioUsuario := @usuario," +
+                "p_contrasenaUsuario := @contrasena);";
+
+            using NpgsqlConnection database = GetConnection();
+
+            try
+            {
+
+                /* abre conexión */
+                await database.OpenAsync();
+
+                userModel? user = await database.QueryFirstOrDefaultAsync<userModel>(sqlQuery, new
+                {
+
+                    idUsuario = updateUserDto.idUsuario,
+                    nombres = updateUserDto.nombres,
+                    usuario = updateUserDto.usuario,
+                    contrasena = updateUserDto.contrasena
+
+                });
+
+                /* cierra conexión */
+                await database.CloseAsync();
+
+                return user;
+
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
 
         }
 
-        public Task<userModel> remove(createUserDto createUserDto)
+        public async Task<userModel> remove(int idUsuario)
         {
-            throw new NotImplementedException();
+            string sqlQuery = "select * FROM fun_user_remove ( p_idUsuario:= @idUsuario)";
+            using NpgsqlConnection database = GetConnection();
+
+            try
+            {
+
+                /* abre conexión */
+                await database.OpenAsync();
+
+                /* ejecuta el query */
+                userModel? user = await database.QueryFirstOrDefaultAsync<userModel>(sqlQuery, new { idUsuario });
+
+                /* cierra conexión*/
+                await database.CloseAsync();
+
+                return null;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
         }
     }
 }

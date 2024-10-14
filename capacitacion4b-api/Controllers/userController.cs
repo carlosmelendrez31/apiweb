@@ -24,7 +24,7 @@ namespace capacitacion4b_api.Controllers
         }
 
         // GET: userController/Details/5
-        [HttpGet("{id}")]
+        [HttpGet("{idUsuario}")]
         public async Task<IActionResult> findOne(int id)
         {
 
@@ -42,6 +42,26 @@ namespace capacitacion4b_api.Controllers
             return Created(user?.idUsuario.ToString(), user);
 
         }
+        [HttpPut("{idUsuario}")]
+        /* actualiza al usuario indicado */
+        public async Task<IActionResult> Update(int idUsuario, [FromBody] updateUserDto updateUserDto)
+        {
+
+            userModel? user = await _userService.update(idUsuario, updateUserDto);
+            return Ok(user);
+
+        }
+
+        [HttpDelete("{idUsuario}")]
+        
+        public async Task<IActionResult> Remove(int idUsuario)
+        {
+
+            userModel? user = await _userService.remove(idUsuario);
+            return Ok(user);
+
+        }
+
 
     }
 
