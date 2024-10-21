@@ -147,7 +147,7 @@ namespace capacitacion4b_api.Data.services
 
         public async Task<userModel> remove(int idUsuario)
         {
-            string sqlQuery = "select * FROM fun_user_remove ( p_idUsuario:= @idUsuario)";
+            string sqlQuery = "select * from function fun_user_remove (p_idUsuario := @idUsuario;)";
             using NpgsqlConnection database = GetConnection();
 
             try
@@ -164,7 +164,7 @@ namespace capacitacion4b_api.Data.services
 
                 return null;
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
                 return null;
             }

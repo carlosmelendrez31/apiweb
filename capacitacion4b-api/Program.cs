@@ -16,7 +16,7 @@ builder.Services.AddSingleton(postgresqlConection);
 
 builder.Services.AddScoped<iUserService, userService>();
 
-//builder.Services.AddScoped<iTaskService, taskService>();
+builder.Services.AddScoped<iTaskService, taskService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

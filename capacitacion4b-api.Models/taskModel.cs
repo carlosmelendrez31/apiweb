@@ -6,7 +6,7 @@
 
         public int idTarea { get; set; }
         public string? tarea { get; set; }
-        public string? descripcion { get; set; }
+        public string? description { get; set; }
         public bool completada { get; set; }
         public userModel usuario { get; set; }
 

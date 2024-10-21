@@ -53,7 +53,7 @@ namespace capacitacion4b_api.Controllers
         }
 
         [HttpDelete("{idUsuario}")]
-        
+
         public async Task<IActionResult> Remove(int idUsuario)
         {
 

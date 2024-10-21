@@ -11,8 +11,8 @@ namespace capacitacion4b_api.DTOs.task
     {
 
         public string? tarea { get; set; }
-        public string? descripcion { get; set; }   
-        public string? idUsuario { get; set; }
+        public string? description { get; set; }   
+        public int? idUsuario { get; set; }
 
     }
 
