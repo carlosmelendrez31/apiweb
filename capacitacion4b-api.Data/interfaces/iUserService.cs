@@ -21,7 +21,10 @@ namespace capacitacion4b_api.Data.interfaces
 
         /* eliminar un usuario */
         public Task<userModel> remove(int idUsuario);
-       
+
+        public Task<IEnumerable<userModel>> FindAlltasks(int idUsuario);
+
+
     }
 
 }

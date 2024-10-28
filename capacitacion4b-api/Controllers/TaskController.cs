@@ -23,17 +23,6 @@ namespace capacitacion4b_api.Controllers
 
         }
 
-        [HttpGet("{idTarea}")]
-        public async Task<IActionResult> FindOne(int id)
-        {
-
-            var task = await _taskService.FindOne(id);
-            return Ok(task);
-
-        }
-
-
-
         [HttpPost]
         /* crea una nueva tarea */
         public async Task<IActionResult> Create([FromBody] createTaskDto createTaskDto)
@@ -59,7 +48,7 @@ namespace capacitacion4b_api.Controllers
         public async Task<IActionResult> Remove(int idTarea)
         {
 
-            taskModel? task = await _taskService.Remove(idTarea);
+            var task = await _taskService.Remove(idTarea);
             return Ok(task);
 
         }
@@ -73,6 +62,17 @@ namespace capacitacion4b_api.Controllers
             return Ok(task);
 
         }
+        [HttpGet("idTarea")]
+        /* cambia el estado de la tarea indicada */
+        public async Task<IActionResult> finOne(int idTarea)
+        {
+
+            taskModel? task = await _taskService.FindOne(idTarea);
+            return Ok(task);
+
+        }
+
+
 
 
     }

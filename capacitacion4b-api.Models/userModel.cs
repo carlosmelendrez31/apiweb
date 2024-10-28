@@ -18,6 +18,19 @@ namespace capacitacion4b_api.Models
         public string? usuarioUsuario { get; set; }
         /* contrasenaUsuario*/
         public string? contrasenaUsuario { get; set; }
+        public List<taskModel> tasks { get; set; } = [];
+
+        public override int GetHashCode() => idUsuario.GetHashCode();
+
+        public override bool Equals(object? obj)
+        {
+            if (obj == null) return false;
+
+            if (obj is userModel user) { return user.idUsuario == idUsuario; }
+            else { return false; }
+        }
+        
+
 
     }
 

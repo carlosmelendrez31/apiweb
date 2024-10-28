@@ -54,9 +54,9 @@ namespace capacitacion4b_api.Data.services {
         #endregion
 
         #region findonetask
-        public async Task<taskModel> FindOne(int idTarea)
+        public async Task<taskModel> FindOne(int idtarea)
         {
-            string sqlQuery = "select * from view_tarea where idTarea = @idTarea";
+            string sqlQuery = "select * from view_tarea where idtarea = @idtarea";
             using NpgsqlConnection database = GetConnection();
 
             try
@@ -66,7 +66,7 @@ namespace capacitacion4b_api.Data.services {
                 await database.OpenAsync();
 
                 /* ejecuta el query */
-                taskModel? task = await database.QueryFirstOrDefaultAsync<taskModel>(sqlQuery, new { idTarea });
+                taskModel? task = await database.QueryFirstOrDefaultAsync<taskModel>(sqlQuery, new { idtarea });
 
                 /* cierra conexión*/
                 await database.CloseAsync();

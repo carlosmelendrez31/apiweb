@@ -15,7 +15,7 @@ namespace capacitacion4b_api.Data.interfaces
         /* crear tarea */
         public Task<IEnumerable<taskModel>> FindAll();
         /* buscar una tarea */
-        public Task<taskModel> FindOne(int idTarea);
+        public Task<taskModel> FindOne(int idtarea);
         /* crear tarea */
         public Task<taskModel?> Create(createTaskDto createTaskDto);
         /* actualizar tarea */
@@ -24,6 +24,8 @@ namespace capacitacion4b_api.Data.interfaces
         public Task<taskModel> Remove(int idTarea);
         /* cambiar el status tarea */
         public Task<taskModel> ToggleStatus(int idTarea);
+
+        
 
     }
 

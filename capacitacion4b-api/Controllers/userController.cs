@@ -61,7 +61,12 @@ namespace capacitacion4b_api.Controllers
             return Ok(user);
 
         }
-
+        [HttpGet("idUsuario")]
+        public async Task<IActionResult> FindAlltasks(int idUsuario)
+        {
+            var user = await _userService.FindAlltasks(idUsuario);
+            return Ok(user);
+        }
 
     }
 

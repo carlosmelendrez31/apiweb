@@ -168,6 +168,52 @@ namespace capacitacion4b_api.Data.services
             {
                 return null;
             }
+      
+        }
+
+        public async Task<IEnumerable<userModel?>> FindAlltasks(int idUsuario)
+        {
+            string sqlQuery = "select * from v_usuarios;";
+            Dictionary<int, List<taskModel>> tasks = [];
+            using NpgsqlConnection database = GetConnection();
+            try
+            {
+                await database.OpenAsync();
+                IEnumerable<userModel> result = await database.QueryAsync<userModel, taskModel, userModel>(
+                    sql: sqlQuery,
+                    param: new { },
+                    map: (user, task) => {
+
+                        List<taskModel> currenttasks = [];
+                        tasks.TryGetValue(user.idUsuario, out currenttasks);
+                        currenttasks ??= [];
+                        if (currenttasks.Count == 0 && task != null)
+                        {
+                            currenttasks = [task];
+                        }else if(currenttasks.Count > 0 && task != null)
+                        {
+                            currenttasks.Add(task);
+                        } 
+                        tasks[user.idUsuario] = currenttasks;
+                            
+                            return user;
+
+                                       },
+                    splitOn: "idTarea"
+                    );
+
+                await database.CloseAsync();
+                result = result.Select(user => {
+                    user.tasks = tasks[user.idUsuario]; 
+                    return user;
+                });
+                return result;
+            }
+            catch (Exception e)
+            {
+                return [];
+            }
         }
     }
+
 }
